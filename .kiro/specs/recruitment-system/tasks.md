@@ -6,7 +6,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
 
 ## Tasks
 
-- [x] 1. Khởi tạo dự án và cấu hình môi trường
+- [~] 1. Khởi tạo dự án và cấu hình môi trường
   - Tạo dự án Vite + React 18 + TypeScript
   - Cài đặt và cấu hình: Tailwind CSS, Ant Design 5, Redux Toolkit, React Router v6, Axios, React Hook Form, Zod, Socket.IO Client, fast-check, Vitest, React Testing Library, MSW
   - Tạo cấu trúc thư mục theo feature: `src/app`, `src/assets`, `src/components`, `src/features`, `src/hooks`, `src/pages`, `src/routes`, `src/services`, `src/types`, `src/utils`, `src/constants`
@@ -22,7 +22,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
   - Tạo `src/constants/app.ts` với các hằng số: giới hạn file size, pagination size, cache TTL
   - _Yêu cầu: 1.1, 2.1, 3.1, 5.3_
 
-- [-] 3. Cấu hình Redux Store và RTK Query
+- [x] 3. Cấu hình Redux Store và RTK Query
   - Tạo `src/app/store.ts` với Redux store, tích hợp redux-persist cho `auth.accessToken`, `ui.theme`, `ui.sidebarCollapsed`
   - Tạo `src/features/auth/authSlice.ts` với `AuthState` (user, accessToken, isAuthenticated, loginAttempts, isLocked, lockUntil)
   - Tạo `src/features/ui/uiSlice.ts` với `UIState` (theme, sidebarCollapsed, activeModal)
@@ -31,7 +31,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
   - Tạo `src/services/baseApi.ts` cấu hình RTK Query base với Axios, xử lý JWT refresh token tự động (401 → refresh → retry)
   - _Yêu cầu: 1.5, 1.9, 1.10_
 
-- [~] 4. Xây dựng hệ thống Routing và Layout
+- [x] 4. Xây dựng hệ thống Routing và Layout
   - Tạo `src/routes/index.tsx` với React Router v6, định nghĩa tất cả routes theo thiết kế (public, candidate, recruiter, admin)
   - Tạo `src/routes/ProtectedRoute.tsx` kiểm tra auth và role, redirect về `/auth/login` nếu chưa đăng nhập, redirect 403 nếu sai role
   - Tạo `src/components/layout/AppLayout.tsx` với Header, Sidebar, Outlet theo role
@@ -40,13 +40,13 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
   - Tạo `src/components/layout/Sidebar.tsx` với menu items theo role, collapsible
   - _Yêu cầu: 1.5, 11.1, 13.3_
 
-- [~] 5. Triển khai Module Xác Thực (Auth)
-  - [ ] 5.1 Tạo RTK Query API cho auth
+- [ ] 5. Triển khai Module Xác Thực (Auth)
+  - [x] 5.1 Tạo RTK Query API cho auth
     - Tạo `src/features/auth/authApi.ts` với endpoints: register, login, logout, refreshToken, forgotPassword, resetPassword, verifyEmail, googleOAuth
     - Implement interceptor tự động refresh token trước 5 phút hết hạn
     - _Yêu cầu: 1.1, 1.3, 1.5, 1.7, 1.8, 1.9_
 
-  - [ ] 5.2 Tạo trang và form đăng ký
+  - [x] 5.2 Tạo trang và form đăng ký
     - Tạo `src/pages/public/RegisterPage.tsx` với `RegisterForm` component
     - Form fields: họ tên, email, mật khẩu, xác nhận mật khẩu, lựa chọn vai trò (Candidate/Recruiter)
     - Zod schema validation: email format, password strength, password match
@@ -54,11 +54,11 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Sau đăng ký thành công: hiển thị thông báo kiểm tra email
     - _Yêu cầu: 1.1, 1.2, 1.3_
 
-  - [ ]* 5.3 Viết property test cho đăng ký tài khoản
+  - [~] 5.3 Viết property test cho đăng ký tài khoản
     - **Property 1: Đăng ký tài khoản hợp lệ luôn tạo được tài khoản**
     - **Validates: Yêu cầu 1.3**
 
-  - [ ] 5.4 Tạo trang đăng nhập
+  - [x] 5.4 Tạo trang đăng nhập
     - Tạo `src/pages/public/LoginPage.tsx` với `LoginForm` component
     - Form fields: email, mật khẩu, remember me
     - Hiển thị lỗi đăng nhập sai, đếm số lần thất bại
@@ -67,23 +67,23 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Sau đăng nhập thành công: redirect đến dashboard theo role
     - _Yêu cầu: 1.5, 1.6, 1.7_
 
-  - [ ]* 5.5 Viết property test cho đăng nhập
+  - [~] 5.5 Viết property test cho đăng nhập
     - **Property 3: Đăng nhập hợp lệ luôn trả về JWT token hợp lệ**
     - **Validates: Yêu cầu 1.5**
 
-  - [ ] 5.6 Tạo trang quên mật khẩu và xác minh email
+  - [~] 5.6 Tạo trang quên mật khẩu và xác minh email
     - Tạo `src/pages/public/ForgotPasswordPage.tsx` với form nhập email
     - Tạo `src/pages/public/ResetPasswordPage.tsx` với form đặt mật khẩu mới
     - Tạo `src/pages/public/VerifyEmailPage.tsx` xử lý token từ URL
     - `EmailVerificationBanner` component nhắc xác minh email
     - _Yêu cầu: 1.4, 1.8_
 
-  - [ ]* 5.7 Viết property test cho xác minh email và đăng xuất
+  - [~] 5.7 Viết property test cho xác minh email và đăng xuất
     - **Property 2: Xác minh email kích hoạt tài khoản (round-trip)**
     - **Property 4: Đăng xuất vô hiệu hóa token (round-trip)**
     - **Validates: Yêu cầu 1.4, 1.10**
 
-  - [ ] 5.8 Tạo custom hook `useAuth`
+  - [~] 5.8 Tạo custom hook `useAuth`
     - Tạo `src/hooks/useAuth.ts` expose: user, isAuthenticated, login, logout, role
     - _Yêu cầu: 1.5, 1.10_
 
@@ -91,23 +91,23 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
   - Đảm bảo tất cả tests pass, kiểm tra luồng đăng ký → xác minh email → đăng nhập → đăng xuất. Hỏi người dùng nếu có thắc mắc.
 
 - [ ] 7. Triển khai Module Hồ Sơ Cá Nhân (Profile)
-  - [ ] 7.1 Tạo RTK Query API cho profile
+  - [~] 7.1 Tạo RTK Query API cho profile
     - Tạo `src/features/profile/profileApi.ts` với endpoints: getMyProfile, updateProfile, uploadAvatar, uploadCV, deleteCV, updateSeekingStatus
     - Cache 10 phút, invalidate khi update
     - _Yêu cầu: 2.1, 2.3, 2.6_
 
-  - [ ] 7.2 Tạo các component upload file
+  - [~] 7.2 Tạo các component upload file
     - Tạo `src/components/common/CVUploader.tsx` dùng React Dropzone, chấp nhận PDF/DOCX, tối đa 10MB
     - Tạo `src/components/common/AvatarUploader.tsx` chấp nhận ảnh, tối đa 5MB
     - Client-side validation kích thước và định dạng trước khi upload
     - Hiển thị lỗi ngay khi chọn file sai
     - _Yêu cầu: 2.2, 2.3_
 
-  - [ ]* 7.3 Viết property test cho file upload validation
+  - [~] 7.3 Viết property test cho file upload validation
     - **Property 5: Validation file upload theo kích thước**
     - **Validates: Yêu cầu 2.2, 2.3**
 
-  - [ ] 7.4 Tạo trang hồ sơ ứng viên
+  - [~] 7.4 Tạo trang hồ sơ ứng viên
     - Tạo `src/pages/candidate/ProfilePage.tsx`
     - Tạo `src/features/profile/ProfileForm.tsx` với tất cả sections: thông tin cơ bản, học vấn, kinh nghiệm, kỹ năng, chứng chỉ
     - Tạo `src/features/profile/ProfileCompletionBar.tsx` hiển thị % hoàn thiện
@@ -116,11 +116,11 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Hiển thị toast "Cập nhật thành công" sau 3 giây
     - _Yêu cầu: 2.1, 2.4, 2.5, 2.7_
 
-  - [ ]* 7.5 Viết property test cho tính toán phần trăm hoàn thiện hồ sơ
+  - [~] 7.5 Viết property test cho tính toán phần trăm hoàn thiện hồ sơ
     - **Property 6: Tính toán phần trăm hoàn thiện hồ sơ**
     - **Validates: Yêu cầu 2.5**
 
-  - [ ]* 7.6 Viết property test cho chế độ tìm kiếm việc làm
+  - [~] 7.6 Viết property test cho chế độ tìm kiếm việc làm
     - **Property 7: Chế độ tìm kiếm việc làm ảnh hưởng đến visibility (round-trip)**
     - **Validates: Yêu cầu 2.6**
 
@@ -143,7 +143,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Hiển thị danh sách trường còn thiếu khi xuất bản thất bại
     - _Yêu cầu: 3.1, 3.2, 3.3, 3.10_
 
-  - [ ]* 8.3 Viết property test cho lưu nháp và xuất bản
+  - [ ] 8.3 Viết property test cho lưu nháp và xuất bản
     - **Property 8: Lưu nháp không yêu cầu đầy đủ trường bắt buộc**
     - **Property 9: Xuất bản từ chối khi thiếu trường bắt buộc**
     - **Validates: Yêu cầu 3.2, 3.3**
@@ -155,7 +155,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Nút sao chép tin, xóa nháp, đóng tin
     - _Yêu cầu: 3.5, 3.6, 3.7, 3.8_
 
-  - [ ]* 8.5 Viết property test cho sao chép tin và chỉnh sửa tin
+  - [ ] 8.5 Viết property test cho sao chép tin và chỉnh sửa tin
     - **Property 11: Chỉnh sửa tin không làm mất đơn ứng tuyển (invariant)**
     - **Property 13: Sao chép tin giữ nguyên nội dung**
     - **Validates: Yêu cầu 3.5, 3.7**
@@ -164,7 +164,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Tạo `src/hooks/useFormPersist.ts` lưu form data vào localStorage với key theo route, TTL 24 giờ, tự xóa sau submit
     - _Yêu cầu: 12.5_
 
-  - [ ]* 8.7 Viết property test cho form persistence
+  - [ ] 8.7 Viết property test cho form persistence
     - **Property 30: Dữ liệu form được lưu khi mất kết nối (round-trip)**
     - **Validates: Yêu cầu 12.5**
 
@@ -179,7 +179,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Hiển thị "Không tìm thấy kết quả" khi rỗng
     - _Yêu cầu: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.9_
 
-  - [ ]* 9.2 Viết property test cho bộ lọc tìm kiếm
+  - [ ] 9.2 Viết property test cho bộ lọc tìm kiếm
     - **Property 14: Bộ lọc tìm kiếm trả về đúng kết quả**
     - **Property 15: Phân trang không vượt quá 20 kết quả mỗi trang**
     - **Property 17: Nhãn "Đã ứng tuyển" hiển thị đúng**
@@ -198,7 +198,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Implement lưu bộ lọc vào URL params để có thể share và khôi phục
     - _Yêu cầu: 4.2, 4.4, 4.8_
 
-  - [ ]* 9.5 Viết property test cho lưu và khôi phục bộ lọc
+  - [ ] 9.5 Viết property test cho lưu và khôi phục bộ lọc
     - **Property 16: Lưu và khôi phục bộ lọc tìm kiếm (round-trip)**
     - **Validates: Yêu cầu 4.8**
 
@@ -218,7 +218,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Sau submit thành công: hiển thị xác nhận, gửi email xác nhận
     - _Yêu cầu: 5.1, 5.2, 5.3, 5.4_
 
-  - [ ]* 11.3 Viết property test cho form ứng tuyển
+  - [ ] 11.3 Viết property test cho form ứng tuyển
     - **Property 18: Form ứng tuyển điền sẵn từ profile**
     - **Property 19: Giới hạn độ dài cover letter**
     - **Validates: Yêu cầu 5.1, 5.3**
@@ -228,7 +228,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Disable nút ứng tuyển nếu tin đã đóng/hết hạn
     - _Yêu cầu: 5.5, 5.6_
 
-  - [ ]* 11.5 Viết property test cho idempotence nộp đơn
+  - [ ] 11.5 Viết property test cho idempotence nộp đơn
     - **Property 20: Không tạo đơn ứng tuyển trùng lặp (idempotence)**
     - **Validates: Yêu cầu 5.5**
 
@@ -238,7 +238,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Nút rút đơn (chỉ khi trạng thái "Đang xem xét")
     - _Yêu cầu: 5.7, 5.9_
 
-  - [ ]* 11.7 Viết unit tests cho ApplicationForm
+  - [ ] 11.7 Viết unit tests cho ApplicationForm
     - Test validation cover letter, chọn CV, submit thành công/thất bại
     - _Yêu cầu: 5.1, 5.2, 5.3_
 
@@ -256,7 +256,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Tạo custom hook `src/hooks/usePipeline.ts`
     - _Yêu cầu: 6.2, 6.3_
 
-  - [ ]* 12.3 Viết property test cho pipeline
+  - [ ] 12.3 Viết property test cho pipeline
     - **Property 22: Pipeline cập nhật trạng thái và ghi lịch sử**
     - **Validates: Yêu cầu 6.3**
 
@@ -267,7 +267,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Tạo section ghi chú nội bộ (recruiter only)
     - _Yêu cầu: 6.4, 6.5_
 
-  - [ ]* 12.5 Viết property test cho ghi chú và đánh giá
+  - [ ] 12.5 Viết property test cho ghi chú và đánh giá
     - **Property 23: Ghi chú nội bộ được lưu và truy xuất (round-trip)**
     - **Property 24: Đánh giá chỉ chấp nhận giá trị 1-5**
     - **Validates: Yêu cầu 6.4, 6.5**
@@ -278,7 +278,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Khi từ chối: modal chọn lý do + tùy chọn gửi email thông báo
     - _Yêu cầu: 6.6, 6.9_
 
-  - [ ]* 12.7 Viết property test cho hành động hàng loạt
+  - [ ] 12.7 Viết property test cho hành động hàng loạt
     - **Property 25: Hành động hàng loạt áp dụng cho tất cả đã chọn**
     - **Validates: Yêu cầu 6.6**
 
@@ -305,7 +305,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Trang xác nhận tham dự cho candidate: `src/pages/candidate/InterviewConfirmPage.tsx`
     - _Yêu cầu: 7.4, 7.5, 7.6_
 
-  - [ ]* 14.4 Viết unit tests cho interview scheduling
+  - [ ] 14.4 Viết unit tests cho interview scheduling
     - Test tạo lịch, hủy lịch, xác nhận tham dự
     - _Yêu cầu: 7.1, 7.4, 7.5_
 
@@ -331,11 +331,11 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Tạo endpoints: getMessages, sendMessage trong notificationsApi
     - _Yêu cầu: 8.6_
 
-  - [ ]* 15.5 Viết property test cho thông báo trạng thái đơn
+  - [ ] 15.5 Viết property test cho thông báo trạng thái đơn
     - **Property 21: Thông báo khi trạng thái đơn thay đổi**
     - **Validates: Yêu cầu 5.8_
 
-  - [ ]* 15.6 Viết unit tests cho NotificationBell và NotificationDropdown
+  - [ ] 15.6 Viết unit tests cho NotificationBell và NotificationDropdown
     - Test hiển thị badge, cập nhật real-time, đánh dấu đã đọc
     - _Yêu cầu: 8.1, 8.2, 8.5_
 
@@ -355,7 +355,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Tạo `src/features/company/CompanyForm.tsx` với upload logo, ảnh bìa, thông tin công ty
     - _Yêu cầu: 9.1_
 
-  - [ ]* 16.4 Viết unit tests cho CompanyPage và FollowButton
+  - [ ] 16.4 Viết unit tests cho CompanyPage và FollowButton
     - Test hiển thị thông tin, follow/unfollow
     - _Yêu cầu: 9.3, 9.4_
 
@@ -374,7 +374,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Nút xuất báo cáo PDF/Excel
     - _Yêu cầu: 10.1, 10.2, 10.3, 10.4, 10.5_
 
-  - [ ]* 17.3 Viết property test cho thống kê dashboard
+  - [ ] 17.3 Viết property test cho thống kê dashboard
     - **Property 26: Thống kê dashboard phản ánh đúng dữ liệu thực**
     - **Validates: Yêu cầu 6.7, 10.1, 10.2, 10.3**
 
@@ -410,7 +410,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Tạo `src/pages/admin/DashboardPage.tsx` thống kê toàn hệ thống: tổng recruiter, candidate, giao dịch
     - _Yêu cầu: 10.6_
 
-  - [ ]* 19.6 Viết property test cho admin actions
+  - [ ] 19.6 Viết property test cho admin actions
     - **Property 27: Vô hiệu hóa recruiter ẩn tất cả job của họ**
     - **Property 28: Mọi hành động admin đều tạo audit log entry**
     - **Validates: Yêu cầu 11.4, 11.5**
@@ -421,7 +421,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Cấu hình ProtectedRoute kiểm tra role, trả về 403 nếu sai quyền
     - _Yêu cầu: 13.3, 13.4_
 
-  - [ ]* 20.2 Viết property test cho bảo mật
+  - [ ] 20.2 Viết property test cho bảo mật
     - **Property 31: RBAC ngăn truy cập trái phép**
     - **Property 32: Input được sanitize trước khi xử lý**
     - **Validates: Yêu cầu 13.3, 13.4**
@@ -448,7 +448,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Sidebar collapse trên mobile, hamburger menu
     - _Yêu cầu: 12.3_
 
-  - [ ]* 21.3 Viết property test cho responsive layout
+  - [ ] 21.3 Viết property test cho responsive layout
     - **Property 29: Responsive layout đúng ở mọi viewport**
     - **Validates: Yêu cầu 12.3**
 
@@ -478,7 +478,7 @@ Xây dựng hệ thống tuyển dụng trực tuyến bằng React 18 + TypeScr
     - Tạo `src/pages/ForbiddenPage.tsx`
     - _Yêu cầu: 13.3_
 
-  - [ ]* 22.4 Viết integration tests cho các luồng chính
+  - [ ] 22.4 Viết integration tests cho các luồng chính
     - Test auth flow: register → verify → login → logout
     - Test job flow: create draft → publish → search → apply
     - Test pipeline flow: receive application → move stages → hire/reject

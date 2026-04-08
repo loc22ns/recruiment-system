@@ -1,11 +1,29 @@
-import React from 'react'
+import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { ConfigProvider, Spin } from 'antd';
+import viVN from 'antd/locale/vi_VN';
+import { store, persistor } from '@/app/store';
+import router from '@/routes';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <h1 className="text-2xl font-bold text-center py-8">Hệ Thống Tuyển Dụng</h1>
-    </div>
-  )
-}
+    <Provider store={store}>
+      <PersistGate
+        loading={
+          <div className="flex items-center justify-center min-h-screen">
+            <Spin size="large" />
+          </div>
+        }
+        persistor={persistor}
+      >
+        <ConfigProvider locale={viVN}>
+          <RouterProvider router={router} />
+        </ConfigProvider>
+      </PersistGate>
+    </Provider>
+  );
+};
 
-export default App
+export default App;
